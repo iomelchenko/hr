@@ -1,0 +1,29 @@
+<h1>Listing skilllts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skilllts.each do |skilllt| %>
+      <tr>
+        <td><%= skilllt.name %></td>
+        <td><%= skilllt.title %></td>
+        <td><%= skilllt.content %></td>
+        <td><%= link_to 'Show', skilllt %></td>
+        <td><%= link_to 'Edit', edit_skilllt_path(skilllt) %></td>
+        <td><%= link_to 'Destroy', skilllt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Skilllt', new_skilllt_path %>
