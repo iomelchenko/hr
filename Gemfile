@@ -8,8 +8,8 @@ gem 'pg'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'pry'
 end
-
 
 
 # Use SCSS for stylesheets

@@ -24,7 +24,6 @@ default: &default
 development:
   <<: *default
   database: hr_development
-  pool: 5
   host: localhost
   username: hr
   password: thepasswordhr
@@ -62,6 +61,9 @@ development:
 test:
   <<: *default
   database: hr_test
+  host: localhost
+  username: hr
+  password: thepasswordhr  
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
