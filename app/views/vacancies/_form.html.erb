@@ -1,33 +1,51 @@
-<%= form_for(@vacancy) do |f| %>
-  <% if @vacancy.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
+<%= form_for @vacancy, :html => { :class => "form-horizontal vacancy" } do |f| %>
 
-      <ul>
-      <% @vacancy.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @vacancy.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @vacancy.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+    <%= error_span(@vacancy[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :validity_period %><br>
-    <%= f.text_field :validity_period %>
+  <div class="control-group">
+    <%= f.label :"validity_period (month)", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :validity_period, :class => 'text_field' %>
+    </div>
+    <%= error_span(@vacancy[:validity_period]) %>
   </div>
-  <div class="field">
-    <%= f.label :salary %><br>
-    <%= f.text_field :salary %>
+  <div class="control-group">
+    <%= f.label :salary, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :salary, :class => 'text_field' %>
+    </div>
+    <%= error_span(@vacancy[:salary]) %>
   </div>
-  <div class="field">
-    <%= f.label :contact_information %><br>
-    <%= f.text_area :contact_information %>
-  </div>  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="control-group">
+    <%= f.label :contact_information, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :contact_information, :class => 'text_field' %>
+    </div>
+    <%= error_span(@vacancy[:contact_information]) %>
+  </div><br>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            vacancies_path, :class => 'btn btn-default' %>
+
 <% end %>

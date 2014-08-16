@@ -1,6 +1,30 @@
-<h1>Editing vacancy</h1>
+<% javascript 'combo_input' %>
 
-<%= render 'form' %>
+<%- model_class = Vacancy -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
 
-<%= link_to 'Show', @vacancy %> |
-<%= link_to 'Back', vacancies_path %>
+<%= render :partial => 'form' %>
+
+<h3> Skills for " <%=t '.title', :default => @vacancy.name %> " vacancy</h3>
+
+  
+<%= render partial: 'skills/skills_new' %>
+
+<table class="table table-condensed" id="skills_table">
+
+<%= render partial: 'skills/skill', collection: @vacancy.skills, params: params %>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+

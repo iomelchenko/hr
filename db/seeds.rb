@@ -64,10 +64,10 @@ sql = "insert into skills_vacancies (skill_id,vacancy_id) values (1,2);
        insert into skills_vacancies (skill_id,vacancy_id) values (1,3);
        insert into skills_vacancies (skill_id,vacancy_id) values (2,3);
        insert into skills_vacancies (skill_id,vacancy_id) values (3,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (4,4);
-       insert into skills_vacancies (skill_id,vacancy_id) values (5,5);
-       insert into skills_vacancies (skill_id,vacancy_id) values (6,6);
-       insert into skills_vacancies (skill_id,vacancy_id) values (7,7);"   
+       insert into skills_vacancies (skill_id,vacancy_id) values (4,3);
+       insert into skills_vacancies (skill_id,vacancy_id) values (5,3);
+       insert into skills_vacancies (skill_id,vacancy_id) values (6,3);
+       insert into skills_vacancies (skill_id,vacancy_id) values (7,3);"   
 
 ActiveRecord::Base.connection.execute(sql)
 

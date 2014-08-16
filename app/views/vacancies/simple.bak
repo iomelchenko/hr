@@ -1,0 +1,46 @@
+
+
+
+
+	<th><i class="icon-plus"></th>
+	<%= form_for [Skill.new], html: { :class => "add-task form-search" }, remote: true do |f| %>
+	<th><%= f.text_field :name, :class => "input-xlarge", :placeholder => "Start typing here to create a Skill...", :size => 50, :onclick => 'this.select();' %></th>
+	<%= f.hidden_field :vacancy_id, value: @vacancy.id %>
+	<%= f.collection_select(:name, Skill.all, :id, :name, {}, {:multiple => true, :size => 5} ) %>
+	<th><%= f.submit "Add Skill", :class => "btn" %></th>
+    <% end %>
+
+
+    <div class="input-append">
+      <input class="span2" id="appendedDropdownButton" type="text">
+      <div class="btn-group">
+	    <button class="btn dropdown-toggle" data-toggle="dropdown">
+	      Action
+	    <span class="caret"></span>
+	    </button>
+	    <ul class="dropdown-menu">
+		      <% Skill.all do |n| %>
+		          <li> <%= n.name %>" </li>
+		      <% end %>
+	    </ul>
+      </div>
+    </div>
+
+
+<% form_for @vacancy.skills.new do |f| %>
+  <%= f.text_field :name %>
+  <%= f.select :name, [['Hot','hot'],['Medium','medium'],['Cold','cold']] %>
+  <%= f.submit %>
+<% end %>
+
+<%= form_for [Skill.new] do |f| %>
+<%= select_tag "people", options_from_collection_for_select(Skill.all, "id", "name"), id: "e1" %>
+ <th><%= f.submit "Add Skill" %></th>
+  <% end %>
+
+   <table class="table table-striped" id="skill">
+
+    <%= render partial: 'skills/skill', collection: @vacancy.skills %>
+
+</table>
+

@@ -18,7 +18,6 @@ class ApplicantsController < ApplicationController
 
   def create
     @applicant = Applicant.new(applicant_params)
-pry
     respond_to do |format|
       if @applicant.save
         format.html { redirect_to @applicant, notice: 'Applicant was successfully created.' }
