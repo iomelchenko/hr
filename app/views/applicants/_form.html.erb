@@ -25,7 +25,7 @@
   <div class="control-group">
     <%= f.label :"contact_information", :class => 'control-label' %>
     <div class="controls">
-      <%= text_area :contact_information, :class => 'text_field' %>
+      <%= f.text_area :contact_information, :class => 'text_field' %>
     </div>
     <%= error_span(@applicant[:contact_information]) %>
   </div>

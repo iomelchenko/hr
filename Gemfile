@@ -11,6 +11,8 @@ group :development, :test do
   gem 'pry'
 end
 
+gem 'simplecov', :require => false, :group => :test
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

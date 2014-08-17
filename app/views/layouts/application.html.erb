@@ -2,17 +2,31 @@
 <html>
 <head>
   <title>Hr</title>
-  <%= stylesheet_link_tag    '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css', 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css', 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag '//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js', 'application', media: 'all','data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 
   <%= yield(:head) %>
 
 </head>
 <body>
+<div class="container">
+    <ul class="nav nav-tabs">
+    	<li class="active">
+    	<li><%= link_to 'Vacancies', vacancies_path %></li>
+    	</li>
+    	<li><%= link_to 'Applicants', applicants_path %></li>
+      <li><%= link_to 'Skills', skills_path %></li>
+    </ul>
+    </div>
+  </div>
 
-<%= yield %>
-
-   
+  <div class="container">
+    <div class="row">
+      <div class="span9"><%= yield %></div>
+ 
+    </div>
+  </div>
 </body>
 </html>

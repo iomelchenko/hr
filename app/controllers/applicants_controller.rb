@@ -14,6 +14,8 @@ class ApplicantsController < ApplicationController
   end
 
   def edit
+    @model_object = @applicant
+    @model_name = 'applicant'
   end
 
   def create

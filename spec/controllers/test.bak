@@ -1,0 +1,87 @@
+
+
+
+describe "POST create" do
+describe "with valid params" do
+it "creates a new Vacancy" do
+expect {
+post :create, {:vacancy => valid_attributes}, valid_session
+}.to change(Vacancy, :count).by(1)
+end
+it "assigns a newly created vacancy as @vacancy" do
+post :create, {:vacancy => valid_attributes}, valid_session
+assigns(:vacancy).should be_a(Vacancy)
+assigns(:vacancy).should be_persisted
+end
+it "redirects to the created vacancy" do
+post :create, {:vacancy => valid_attributes}, valid_session
+response.should redirect_to(Vacancy.last)
+end
+end
+describe "with invalid params" do
+it "assigns a newly created but unsaved vacancy as @vacancy" do
+# Trigger the behavior that occurs when invalid params are submitted
+Vacancy.any_instance.stub(:save).and_return(false)
+post :create, {:vacancy => {}}, valid_session
+assigns(:vacancy).should be_a_new(Vacancy)
+end
+it "re-renders the 'new' template" do
+# Trigger the behavior that occurs when invalid params are submitted
+Vacancy.any_instance.stub(:save).and_return(false)
+post :create, {:vacancy => {}}, valid_session
+response.should render_template("new")
+end
+end
+end
+describe "PUT update" do
+describe "with valid params" do
+it "updates the requested vacancy" do
+vacancy = Vacancy.create! valid_attributes
+# Assuming there are no other vacancies in the database, this
+# specifies that the Vacancy created on the previous line
+# receives the :update_attributes message with whatever params are
+# submitted in the request.
+Vacancy.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+put :update, {:id => vacancy.to_param, :vacancy => {'these' => 'params'}}, valid_session
+end
+it "assigns the requested vacancy as @vacancy" do
+vacancy = Vacancy.create! valid_attributes
+put :update, {:id => vacancy.to_param, :vacancy => valid_attributes}, valid_session
+assigns(:vacancy).should eq(vacancy)
+end
+it "redirects to the vacancy" do
+vacancy = Vacancy.create! valid_attributes
+put :update, {:id => vacancy.to_param, :vacancy => valid_attributes}, valid_session
+response.should redirect_to(vacancy)
+end
+end
+describe "with invalid params" do
+it "assigns the vacancy as @vacancy" do
+vacancy = Vacancy.create! valid_attributes
+# Trigger the behavior that occurs when invalid params are submitted
+Vacancy.any_instance.stub(:save).and_return(false)
+put :update, {:id => vacancy.to_param, :vacancy => {}}, valid_session
+assigns(:vacancy).should eq(vacancy)
+end
+it "re-renders the 'edit' template" do
+vacancy = Vacancy.create! valid_attributes
+# Trigger the behavior that occurs when invalid params are submitted
+Vacancy.any_instance.stub(:save).and_return(false)
+put :update, {:id => vacancy.to_param, :vacancy => {}}, valid_session
+response.should render_template("edit")
+end
+end
+end
+describe "DELETE destroy" do
+it "destroys the requested vacancy" do
+vacancy = Vacancy.create! valid_attributes
+expect {
+delete :destroy, {:id => vacancy.to_param}, valid_session
+}.to change(Vacancy, :count).by(-1)
+end
+it "redirects to the vacancies list" do
+vacancy = Vacancy.create! valid_attributes
+delete :destroy, {:id => vacancy.to_param}, valid_session
+response.should redirect_to(vacancies_url)
+end
+end

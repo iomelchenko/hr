@@ -3,8 +3,8 @@
 	<%= form_for [Skill.new], html: { :class => "add-task form-search" }, remote: true do |f| %>
 	   <th>
 	   	  <%= f.text_field :name, id: "e2", style: "width: 200px;" %>
-	 	  <%= f.hidden_field "#{model_name}_id", { value: params[:id], model_name: model_name } %>
-	 	  <%= f.hidden_field :model_name, value: model_name %>
+	 	  <%= f.hidden_field "#{@model_name}_id", { value: params[:id] } %>
+	 	  <%= f.hidden_field :model_name, value: @model_name %>
 	   </th>
 	   <th>
 	   	  <%= f.submit "Add Skill", :class => "btn" %>

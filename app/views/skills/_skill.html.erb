@@ -3,12 +3,15 @@
         <td>
           <%= skill.name %>
         </td>
-        <% if params["action"] == "edit" %>
+        <% if params["action"] != "show" %>
         <td>
-          <%#link_to 'Delete', skill_path( id: skill.id, vacancy_id: @vacancy.id), method: :delete, remote: true %>
+          <%= link_to 'Delete', skill_path( id: skill.id, attribute_id: @model_object.id, model_name: @model_name), method: :delete, remote: true %>
         </td>
         <% end %>
       </tr>
+
+
+
 
 
 

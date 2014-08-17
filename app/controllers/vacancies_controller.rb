@@ -2,6 +2,7 @@ class VacanciesController < ApplicationController
 
 	before_action :set_vacancy, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @vacancies = Vacancy.all
   end
@@ -14,6 +15,8 @@ class VacanciesController < ApplicationController
   end
 
   def edit
+    @model_object = @vacancy
+    @model_name = 'vacancy'
   end
 
   def create

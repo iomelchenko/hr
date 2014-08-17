@@ -1,13 +1,19 @@
 <%# encoding: utf-8 %>
 
 $(document).ready(function() {
-			var skills = [];
+
+              var skills = [];
+		      <% for skill in Skill.all %>
+		           skills.push('<%= skill.name %>');
+		      <% end %>	              
+
+    	$("#e2").change(function() { 
+    		    skills = [];
 		      <% for skill in Skill.all %>
 		           skills.push('<%= skill.name %>');
 		      <% end %>	
-			$("#e2").select2({ tags:skills, 
-				               tokenSeparators: [",", " "],
-				               placeholder: "Type or select the Skills .."
-			}); 
+
+		}); 
+
 });
 

@@ -9,15 +9,14 @@
 
 <h3> Skills for " <%=t '.title', :default => @vacancy.name %> " vacancy</h3>
 
-  
-<%= render partial: 'skills/skills_new' %>
 
-<table class="table table-condensed" id="skills_table">
+	<%= render partial: 'skills/skills_new' %>
 
-<%= render partial: 'skills/skill', collection: @vacancy.skills, params: params %>
+	<table class="table table-condensed" id="skills_table">
 
-</table>
+	<%= render partial: 'skills/skill', collection: @vacancy.skills, params: params %>
 
+	</table>
 
 
 
