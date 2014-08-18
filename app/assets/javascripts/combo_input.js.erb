@@ -7,13 +7,9 @@ $(document).ready(function() {
 		           skills.push('<%= skill.name %>');
 		      <% end %>	              
 
-    	$("#e2").change(function() { 
-    		    skills = [];
-		      <% for skill in Skill.all %>
-		           skills.push('<%= skill.name %>');
-		      <% end %>	
-
-		}); 
+    	     $("#e2").select2({ tags:skills,
+                                tokenSeparators: [",", " "],
+                                placeholder: "Select or type new skill ..."});
 
 });
 
