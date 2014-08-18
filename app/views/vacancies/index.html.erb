@@ -5,24 +5,22 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:validity_period) %></th>
       <th><%= model_class.human_attribute_name(:salary) %></th>
       <th><%= model_class.human_attribute_name(:contact_information) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:date_of_publicate) %></th>
+      <th><%= model_class.human_attribute_name(:validity_period_to) %></th>       
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @vacancies.each do |vacancy| %>
       <tr>
-        <td><%= link_to vacancy.id, vacancy_path(vacancy) %></td>
         <td><%= link_to vacancy.name, vacancy_path(vacancy) %></td>
-        <td><%= vacancy.validity_period %></td>
         <td><%= vacancy.salary %></td>
         <td><%= vacancy.contact_information %></td>
-        <td><%=l vacancy.created_at %></td>
+        <td><%= vacancy.created_at.to_formatted_s(:db) %></td>
+        <td><%= (vacancy.created_at + vacancy.validity_period.month).to_date %></td>        
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_vacancy_path(vacancy), :class => 'btn btn-default btn-xs', method: :get %>

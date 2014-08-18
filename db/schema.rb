@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812184753) do
+ActiveRecord::Schema.define(version: 20140818141905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20140812184753) do
     t.string  "status"
     t.integer "desirable_salary"
   end
+
+  add_index "applicants", ["id"], name: "index_applicants_on_id", using: :btree
 
   create_table "applicants_skills", id: false, force: true do |t|
     t.integer "applicant_id"
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 20140812184753) do
   create_table "skills", force: true do |t|
     t.string "name"
   end
+
+  add_index "skills", ["id"], name: "index_skills_on_id", using: :btree
 
   create_table "skills_vacancies", id: false, force: true do |t|
     t.integer "skill_id"
@@ -51,5 +55,7 @@ ActiveRecord::Schema.define(version: 20140812184753) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "vacancies", ["id"], name: "index_vacancies_on_id", using: :btree
 
 end

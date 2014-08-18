@@ -4,7 +4,7 @@ class VacanciesController < ApplicationController
 
 
   def index
-    @vacancies = Vacancy.all
+    @vacancies = Vacancy.all.order(created_at: :desc)
   end
 
   def show
