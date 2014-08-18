@@ -39,6 +39,7 @@ class VacanciesController < ApplicationController
         format.html { redirect_to @vacancy, notice: 'Vacancy was successfully updated.' }
         format.json { render :show, status: :ok, location: @vacancy }
       else
+        @model_object = @vacancy
         format.html { render :edit }
         format.json { render json: @vacancy.errors, status: :unprocessable_entity }
       end

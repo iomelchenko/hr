@@ -5,18 +5,23 @@
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 
-<%= render :partial => 'form' %>
+<div class="row-fluid">
+	<div class="col-md-4">
 
-<h3> Skills for " <%=t '.title', :default => @applicant.name %> " applicant</h3>
+		<%= render :partial => 'form' %>
 
-  
-<%= render partial: 'skills/skills_new' %>
+		<h3> Skills for " <%=t '.title', :default => @applicant.name %> " applicant</h3>
 
-<table class="table table-condensed" id="skills_table">
+		  
+		<%= render partial: 'skills/skills_new' %>
 
-<%= render partial: 'skills/skill', collection: @applicant.skills, params: params %>
+		<table class="table table-condensed" id="skills_table">
 
-</table>
+		<%= render partial: 'skills/skill', collection: @applicant.skills, params: params %>
+
+		</table>
+	</div>	
+</div>	
 
 
 

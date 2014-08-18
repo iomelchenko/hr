@@ -3,33 +3,38 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @vacancy.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:validity_period) %>:</strong></dt>
-  <dd><%= @vacancy.validity_period %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:salary) %>:</strong></dt>
-  <dd><%= @vacancy.salary %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_information) %>:</strong></dt>
-  <dd><%= @vacancy.contact_information %></dd>
-</dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              vacancies_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_vacancy_path(@vacancy), :class => 'btn btn-default', method: :get %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              vacancy_path(@vacancy),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<div class="row-fluid">
+  <div class="col-md-4">
+      <dl class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+        <dd><%= @vacancy.name %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:validity_period) %>:</strong></dt>
+        <dd><%= @vacancy.validity_period %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:salary) %>:</strong></dt>
+        <dd><%= @vacancy.salary %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:contact_information) %>:</strong></dt>
+        <dd><%= @vacancy.contact_information %></dd>
+      </dl>
 
-<h3> Skills for " <%=t '.title', :default => @vacancy.name %> " vacancy</h3>
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    vacancies_path, :class => 'btn btn-default'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_vacancy_path(@vacancy), :class => 'btn btn-default', method: :get %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    vacancy_path(@vacancy),
+                    :method => 'delete',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-danger' %>
 
-<table class="table table-striped">
+      <h3> Skills for " <%=t '.title', :default => @vacancy.name %> " vacancy</h3>
 
-  <%= render partial: 'skills/skill', collection: @vacancy.skills, params: params %>
+      <table class="table table-striped">
 
-</table>          
+        <%= render partial: 'skills/skill', collection: @vacancy.skills, params: params %>
+
+      </table>      
+ </div>
+</div>          
 
 

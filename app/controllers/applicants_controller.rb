@@ -37,6 +37,7 @@ class ApplicantsController < ApplicationController
         format.html { redirect_to @applicant, notice: 'Applicant was successfully updated.' }
         format.json { render :show, status: :ok, location: @applicant }
       else
+        @model_object = @applicant
         format.html { render :edit }
         format.json { render json: @applicant.errors, status: :unprocessable_entity }
       end

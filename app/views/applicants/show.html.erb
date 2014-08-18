@@ -3,32 +3,36 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @applicant.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_information) %>:</strong></dt>
-  <dd><%= @applicant.contact_information %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-  <dd><%= @applicant.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:desirable_salary) %>:</strong></dt>
-  <dd><%= @applicant.desirable_salary %></dd>
-</dl>
+<div class="row-fluid">
+  <div class="col-md-4">
+      <dl class="dl-horizontal">
+        <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+        <dd><%= @applicant.name %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:contact_information) %>:</strong></dt>
+        <dd><%= @applicant.contact_information %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+        <dd><%= @applicant.status %></dd>
+        <dt><strong><%= model_class.human_attribute_name(:desirable_salary) %>:</strong></dt>
+        <dd><%= @applicant.desirable_salary %></dd>
+      </dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              applicants_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_applicant_path(@applicant), :class => 'btn btn-default', method: :get %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              applicant_path(@applicant),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    applicants_path, :class => 'btn btn-default'  %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_applicant_path(@applicant), :class => 'btn btn-default', method: :get %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    applicant_path(@applicant),
+                    :method => 'delete',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-danger' %>
 
-<h3> Skills for " <%=t '.title', :default => @applicant.name %> " applicant</h3>
+      <h3> Skills for " <%=t '.title', :default => @applicant.name %> " applicant</h3>
 
-<table class="table table-striped">
+      <table class="table table-striped">
 
-  <%= render partial: 'skills/skill', collection: @applicant.skills %>
+        <%= render partial: 'skills/skill', collection: @applicant.skills %>
 
-</table>  
+      </table> 
+  </div>  
+</div>  
       
