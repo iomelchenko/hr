@@ -17,7 +17,7 @@
     <% @vacancies.each do |vacancy| %>
       <tr>
         <td><%= link_to vacancy.name, vacancy_path(vacancy) %></td>
-        <td><%= vacancy.salary %></td>
+        <td><%= number_to_currency(vacancy.salary, :unit => "USD ", :separator => ",") %></td>
         <td><%= vacancy.contact_information %></td>
         <td><%= vacancy.created_at.to_formatted_s(:db) %></td>
         <td><%= (vacancy.created_at + vacancy.validity_period.month).to_date %></td>        

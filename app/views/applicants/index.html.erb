@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:contact_information) %></th>
       <th><%= model_class.human_attribute_name(:status) %></th>
@@ -16,11 +15,10 @@
   <tbody>
     <% @applicants.each do |applicant| %>
       <tr>
-        <td><%= link_to applicant.id, applicant_path(applicant) %></td>
         <td><%= link_to applicant.name, applicant_path(applicant) %></td>
         <td><%= applicant.contact_information %></td>
         <td><%= applicant.status %></td>
-        <td><%= applicant.desirable_salary %></td>
+        <td><%= number_to_currency(applicant.desirable_salary, :unit => "USD ", :separator => ",") %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_applicant_path(applicant), :class => 'btn btn-default btn-xs', method: :get %>

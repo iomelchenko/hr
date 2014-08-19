@@ -1,0 +1,22 @@
+<h3><%=  'Matched applicants' %></h3>
+
+
+      <table class="table table-striped">
+         <thead>
+              <tr>
+                <th><%= 'Applicants name' %></th>
+                <th><%= 'Desirable salary' %></th>
+              </tr>
+         </thead>
+          <tbody>
+            <% @matched_applicants.each do |applicant| %>
+              <tr>
+                <td><%= applicant.name %></td>
+                <td><%= number_to_currency(applicant.desirable_salary, :unit => "USD ", :separator => ",") %></td>
+              </tr>
+            <% end %>
+          </tbody>    
+       
+        </div> 
+        </table> 
+   

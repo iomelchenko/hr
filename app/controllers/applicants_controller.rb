@@ -7,6 +7,29 @@ class ApplicantsController < ApplicationController
   end
 
   def show
+    @matched_vacancies = Vacancy.find_by_sql("SELECT v.id, v.name, v.salary, COUNT(sv.skill_id), COUNT(ask.skill_id)
+                                              FROM vacancies v 
+                                              LEFT JOIN skills_vacancies sv
+                                              ON v.id = sv.vacancy_id
+                                              LEFT JOIN applicants_skills ask
+                                              ON ask.skill_id = sv.skill_id
+                                              AND ask.applicant_id = #{@applicant.id}
+                                              WHERE now() BETWEEN v.created_at AND (v.created_at + CAST(v.validity_period || ' months' AS INTERVAL))
+                                              GROUP BY v.id
+                                              HAVING COUNT(sv.skill_id) <= COUNT(ask.skill_id)
+                                              ORDER BY v.salary DESC;")
+
+    @part_matched_vacancies = Vacancy.find_by_sql("SELECT v.id, v.name, v.salary, COUNT(sv.skill_id), COUNT(ask.skill_id)
+                                              FROM vacancies v 
+                                              LEFT JOIN skills_vacancies sv
+                                              ON v.id = sv.vacancy_id
+                                              LEFT JOIN applicants_skills ask
+                                              ON ask.skill_id = sv.skill_id
+                                              AND ask.applicant_id = #{@applicant.id}
+                                              WHERE now() BETWEEN v.created_at AND (v.created_at + CAST(v.validity_period || ' months' AS INTERVAL))
+                                              GROUP BY v.id
+                                              HAVING COUNT(sv.skill_id) > COUNT(ask.skill_id)
+                                              ORDER BY v.salary DESC;")     
   end
 
   def new
@@ -61,4 +84,5 @@ class ApplicantsController < ApplicationController
   def applicant_params
       params.require(:applicant).permit(:name, :contact_information, :status, :desirable_salary)
   end
+
 end

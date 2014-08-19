@@ -35,15 +35,15 @@ skills.each do |skill|
 end
 
 Applicant.delete_all
-applicants = [{:name => 'Иванов Иван Иванович', :contact_information => 'Kiev, tel. 050 1234567',
+applicants = [{:name => 'Иванов Иван Иванович', :contact_information => 'Kiev, tel. 0501234567',
                :status => 'job search', :desirable_salary => 2000},
-              {:name => 'Васильев Сергей Петрович', :contact_information => 'Kharkiv, tel. 097 7654321',
+              {:name => 'Васильев Сергей Петрович', :contact_information => 'Kharkiv, tel. 0977654321',
                :status => 'job search', :desirable_salary => 1500},
-              {:name => 'Митрофанов Георгий Сергеевич', :contact_information => 'Lugansk, tel. 096 3214567',
+              {:name => 'Митрофанов Георгий Сергеевич', :contact_information => 'Lugansk, tel. 0963214567',
                :status => 'job search', :desirable_salary => 900},
-              {:name => 'Крылова Елена Ивановна', :contact_information => 'Minsk, tel. 098 7893245',
+              {:name => 'Крылова Елена Ивановна', :contact_information => 'Minsk, tel. 0987893245',
                :status => 'job search', :desirable_salary => 1200},
-              {:name => 'Дербунов Игорь Васильевич', :contact_information => 'Odessa, tel. 058 3301212',
+              {:name => 'Дербунов Игорь Васильевич', :contact_information => 'Odessa, tel. 0583301212',
                :status => 'search postponed', :desirable_salary => 1200}               
              ]
 

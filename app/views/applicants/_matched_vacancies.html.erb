@@ -1,0 +1,22 @@
+<h3><%=  'Matched vacancies' %></h3>
+
+
+      <table class="table table-striped">
+         <thead>
+              <tr>
+                <th><%= 'Vacancy name' %></th>
+                <th><%= 'Salary' %></th>
+              </tr>
+         </thead>
+          <tbody>
+            <% @matched_vacancies.each do |vacancy| %>
+              <tr>
+                <td><%= vacancy.name %></td>
+                <td><%= number_to_currency(vacancy.salary, :unit => "USD ", :separator => ",") %></td>
+              </tr>
+            <% end %>
+          </tbody>    
+       
+        </div> 
+        </table> 
+  

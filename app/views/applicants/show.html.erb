@@ -4,7 +4,7 @@
 </div>
 
 <div class="row-fluid">
-  <div class="col-md-4">
+  <div class="col-md-6">
       <dl class="dl-horizontal">
         <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
         <dd><%= @applicant.name %></dd>
@@ -13,7 +13,7 @@
         <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
         <dd><%= @applicant.status %></dd>
         <dt><strong><%= model_class.human_attribute_name(:desirable_salary) %>:</strong></dt>
-        <dd><%= @applicant.desirable_salary %></dd>
+        <dd><%= number_to_currency(@applicant.desirable_salary, :unit => "USD ", :separator => ",") %></dd>
       </dl>
 
       <%= link_to t('.back', :default => t("helpers.links.back")),
@@ -34,5 +34,11 @@
 
       </table> 
   </div>  
-</div>  
-      
+
+  <div class="col-md-6">
+
+        <%= render partial: 'matched_vacancies' %>
+
+        <%= render partial: 'part_matched_vacancies' %>        
+
+  </div>

@@ -9,6 +9,10 @@ class Applicant < ActiveRecord::Base
 	validate                  :only_cyrillic_symbols
 	validate                  :email_or_phonenumber_in_contacts
 
+    #scope :matched_skills, ->  { joins(:skills) }
+    #scope :matched_vacancies_with_skills, ->  { joins(:skills) }
+    #(product_id) { where(product_id: product_id) }
+
   private
 
     def word_counts_shold_be_3
