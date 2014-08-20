@@ -1,4 +1,4 @@
-<h3><%=  'Matched vacancies' %></h3>
+<h3><%=  'Full matched vacancies' %></h3>
 
 
       <table class="table table-striped">
@@ -11,7 +11,7 @@
           <tbody>
             <% @matched_vacancies.each do |vacancy| %>
               <tr>
-                <td><%= vacancy.name %></td>
+                <td><%= link_to vacancy.name, vacancy_path(vacancy) %></td>
                 <td><%= number_to_currency(vacancy.salary, :unit => "USD ", :separator => ",") %></td>
               </tr>
             <% end %>

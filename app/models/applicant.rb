@@ -5,7 +5,7 @@ class Applicant < ActiveRecord::Base
 
     validates_presence_of     :name, :contact_information, :status, :desirable_salary
 	validate                  :word_counts_shold_be_3
-	validates_numericality_of :desirable_salary
+	validates_numericality_of :desirable_salary, greater_than: 0
 	validate                  :only_cyrillic_symbols
 	validate                  :email_or_phonenumber_in_contacts
 

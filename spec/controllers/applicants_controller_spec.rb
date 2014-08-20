@@ -5,14 +5,14 @@ describe ApplicantsController do
 
 	let(:applicant) { Applicant.new(:id => 1,
 		    :name => "Иванов Иван Иванович",
-		    :contact_information => "Kharkiv, 096 7325689",
+		    :contact_information => "Kharkiv, 0967325689",
 		    :status => 'job search',
 		    :desirable_salary => "1200")
 		  }
 
 	def valid_attributes 
 		{ :name => "Иванов Иван Иванович",
-		    :contact_information => "Kharkiv, 096 7325689",
+		    :contact_information => "Kharkiv, 0967325689",
 		    :status => 'job search',
 		    :desirable_salary => "1200" }
 	end	    

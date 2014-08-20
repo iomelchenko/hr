@@ -13,7 +13,7 @@ group :development, :test do
   gem 'pry'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', '~> 0.9.0', :group => :test
 
 
 # Use SCSS for stylesheets
