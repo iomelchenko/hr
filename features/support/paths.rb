@@ -18,6 +18,7 @@ module NavigationHelpers
       '/vacancies'
     when /^the (HR )?home\s?page$/ then  '/vacancies'
     when /^the vacancies page$/ then '/vacancies'
+    when /^the applicants page$/ then '/applicants'
 =begin
     when /the edit page for "(.*)"$/
                   
