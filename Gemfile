@@ -13,7 +13,12 @@ group :development, :test do
   gem 'pry'
 end
 
-gem 'simplecov', '~> 0.9.0', :group => :test
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'simplecov', '~> 0.9.0', :group => :test
+  gem 'selenium-webdriver'
+end
 
 
 # Use SCSS for stylesheets
