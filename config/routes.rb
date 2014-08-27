@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :applicants
   resources :skills  
 
+  get '/skills_refresh', to: 'skills#refresh'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
