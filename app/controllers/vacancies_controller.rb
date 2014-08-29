@@ -8,39 +8,21 @@ class VacanciesController < ApplicationController
   end
 
   def show
-    @matched_applicants = Applicant.find_by_sql("SELECT a.id, a.name, a.desirable_salary, COUNT(ask.skill_id), vsc.cnt
-                                                 FROM applicants_skills ask
-                                                 JOIN applicants a
-                                                   ON ask.applicant_id = a.id
-                                                  AND a.status = 'job search'
-                                                 LEFT JOIN skills_vacancies sv
+    @matched_applicants = Applicant.applicant_links.joins("LEFT JOIN skills_vacancies sv 
                                                    ON ask.skill_id = sv.skill_id
-                                                  AND sv.vacancy_id = #{@vacancy.id}
-                                                 JOIN (SELECT COUNT(*) AS cnt, vacancy_id 
-                                                            FROM skills_vacancies 
-                                                            WHERE vacancy_id = #{@vacancy.id}
-                                                            GROUP BY vacancy_id) AS vsc
-                                                   ON vsc.vacancy_id = sv.vacancy_id            
-                                                GROUP BY a.id, a.desirable_salary, vsc.cnt
-                                               HAVING COUNT(ask.skill_id) >= vsc.cnt
-                                               ORDER BY a.desirable_salary;")
+                                                  AND sv.vacancy_id = #{@vacancy.id}").joins("JOIN (SELECT COUNT(*) AS cnt, vacancy_id 
+                                                                                            FROM skills_vacancies 
+                                                                                            WHERE vacancy_id = #{@vacancy.id}
+                                                                                            GROUP BY vacancy_id) AS vsc
+                                                                                        ON vsc.vacancy_id = sv.vacancy_id").group_by_applicants.having_by_skills.order_by_desirable_salary
 
-    @part_matched_applicants = Applicant.find_by_sql("SELECT a.id, a.name, a.desirable_salary, COUNT(ask.skill_id), vsc.cnt
-                                                 FROM applicants_skills ask
-                                                 JOIN applicants a
-                                                   ON ask.applicant_id = a.id
-                                                  AND a.status = 'job search'
-                                                 LEFT JOIN skills_vacancies sv
+    @part_matched_applicants = Applicant.applicant_links.joins("LEFT JOIN skills_vacancies sv 
                                                    ON ask.skill_id = sv.skill_id
-                                                  AND sv.vacancy_id = #{@vacancy.id}
-                                                 JOIN (SELECT COUNT(*) AS cnt, vacancy_id 
-                                                            FROM skills_vacancies 
-                                                            WHERE vacancy_id = #{@vacancy.id}
-                                                            GROUP BY vacancy_id) AS vsc
-                                                   ON vsc.vacancy_id = sv.vacancy_id            
-                                                GROUP BY a.id, a.desirable_salary, vsc.cnt
-                                               HAVING COUNT(ask.skill_id) < vsc.cnt
-                                               ORDER BY a.desirable_salary;;")   
+                                                  AND sv.vacancy_id = #{@vacancy.id}").joins("JOIN (SELECT COUNT(*) AS cnt, vacancy_id 
+                                                                                            FROM skills_vacancies 
+                                                                                            WHERE vacancy_id = #{@vacancy.id}
+                                                                                            GROUP BY vacancy_id) AS vsc
+                                                                                        ON vsc.vacancy_id = sv.vacancy_id").group_by_applicants.having_by_skills_partially.order_by_desirable_salary
   end
 
   def new

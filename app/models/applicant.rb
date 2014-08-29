@@ -9,6 +9,14 @@ class Applicant < ActiveRecord::Base
 	validate                  :only_cyrillic_symbols
 	validate                  :email_or_phonenumber_in_contacts
 
+    scope :applicant_links,            -> { joins("LEFT OUTER JOIN applicants_skills ask
+                                                                ON ask.applicant_id = applicants.id
+                                                               AND applicants.status = 'job search'") }
+    scope :group_by_applicants,        -> { select("applicants.id, applicants.name, applicants.desirable_salary, COUNT(ask.skill_id), vsc.cnt").group("applicants.id, applicants.desirable_salary, vsc.cnt") }
+    scope :having_by_skills,           -> { having("COUNT(ask.skill_id) >= vsc.cnt") }
+    scope :having_by_skills_partially, -> { having("COUNT(ask.skill_id) < vsc.cnt") }
+    scope :order_by_desirable_salary,  -> { order("applicants.desirable_salary") }    
+
   private
 
     def word_counts_shold_be_3

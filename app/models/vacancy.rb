@@ -10,7 +10,8 @@ class Vacancy < ActiveRecord::Base
 
 
 	scope :filter_valid_vacancies,     -> { all.where("vacancies.id IN (?)", Vacancy.valid_vacancies) }
-	scope :vacancy_links,              -> { joins("LEFT OUTER JOIN skills_vacancies sv ON vacancies.id = sv.vacancy_id") }
+	scope :vacancy_links,              -> { joins("LEFT OUTER JOIN skills_vacancies sv 
+		                                                        ON vacancies.id = sv.vacancy_id") }
 	scope :group_by_vacancies,         -> { select("vacancies.id, vacancies.name, vacancies.salary, COUNT(sv.skill_id), COUNT(ask.skill_id)").group("vacancies.id") }
     scope :having_by_skills,           -> { having("COUNT(sv.skill_id) <= COUNT(ask.skill_id)") }
     scope :having_by_skills_partially, -> { having("COUNT(sv.skill_id) > COUNT(ask.skill_id)") }
