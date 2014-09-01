@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140818141905) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "applicants", force: true do |t|
     t.string  "name"
     t.text    "contact_information"
@@ -23,29 +20,29 @@ ActiveRecord::Schema.define(version: 20140818141905) do
     t.integer "desirable_salary"
   end
 
-  add_index "applicants", ["id"], name: "index_applicants_on_id", using: :btree
+  add_index "applicants", ["id"], name: "index_applicants_on_id"
 
   create_table "applicants_skills", id: false, force: true do |t|
     t.integer "applicant_id"
     t.integer "skill_id"
   end
 
-  add_index "applicants_skills", ["applicant_id"], name: "index_applicants_skills_on_applicant_id", using: :btree
-  add_index "applicants_skills", ["skill_id"], name: "index_applicants_skills_on_skill_id", using: :btree
+  add_index "applicants_skills", ["applicant_id"], name: "index_applicants_skills_on_applicant_id"
+  add_index "applicants_skills", ["skill_id"], name: "index_applicants_skills_on_skill_id"
 
   create_table "skills", force: true do |t|
     t.string "name"
   end
 
-  add_index "skills", ["id"], name: "index_skills_on_id", using: :btree
+  add_index "skills", ["id"], name: "index_skills_on_id"
 
   create_table "skills_vacancies", id: false, force: true do |t|
     t.integer "skill_id"
     t.integer "vacancy_id"
   end
 
-  add_index "skills_vacancies", ["skill_id"], name: "index_skills_vacancies_on_skill_id", using: :btree
-  add_index "skills_vacancies", ["vacancy_id"], name: "index_skills_vacancies_on_vacancy_id", using: :btree
+  add_index "skills_vacancies", ["skill_id"], name: "index_skills_vacancies_on_skill_id"
+  add_index "skills_vacancies", ["vacancy_id"], name: "index_skills_vacancies_on_vacancy_id"
 
   create_table "vacancies", force: true do |t|
     t.string   "name"
@@ -56,6 +53,6 @@ ActiveRecord::Schema.define(version: 20140818141905) do
     t.datetime "updated_at"
   end
 
-  add_index "vacancies", ["id"], name: "index_vacancies_on_id", using: :btree
+  add_index "vacancies", ["id"], name: "index_vacancies_on_id"
 
 end

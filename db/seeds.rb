@@ -54,46 +54,45 @@ end
 
 sql_del = "delete from skills_vacancies"
 ActiveRecord::Base.connection.execute(sql_del)
-sql = "insert into skills_vacancies (skill_id,vacancy_id) values (1,2);
-       insert into skills_vacancies (skill_id,vacancy_id) values (3,2);
-       insert into skills_vacancies (skill_id,vacancy_id) values (4,2);
-       insert into skills_vacancies (skill_id,vacancy_id) values (6,2);
-       insert into skills_vacancies (skill_id,vacancy_id) values (7,2);
-       insert into skills_vacancies (skill_id,vacancy_id) values (3,1);
-       insert into skills_vacancies (skill_id,vacancy_id) values (4,1);
-       insert into skills_vacancies (skill_id,vacancy_id) values (1,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (2,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (3,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (4,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (5,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (6,3);
-       insert into skills_vacancies (skill_id,vacancy_id) values (7,3);"   
+sql = "INSERT INTO skills_vacancies 
+          SELECT 1,2
+          UNION ALL SELECT 3,2
+          UNION ALL SELECT 4,2
+          UNION ALL SELECT 6,2
+          UNION ALL SELECT 7,2
+          UNION ALL SELECT 3,1
+          UNION ALL SELECT 4,1
+          UNION ALL SELECT 1,3
+          UNION ALL SELECT 2,3
+          UNION ALL SELECT 3,3
+          UNION ALL SELECT 4,3
+          UNION ALL SELECT 5,3
+          UNION ALL SELECT 6,3
+          UNION ALL SELECT 7,3;"  
 
 ActiveRecord::Base.connection.execute(sql)
 
 
 sql_del = "delete from applicants_skills"
 ActiveRecord::Base.connection.execute(sql_del)
-sql = "insert into applicants_skills (applicant_id, skill_id) values (1,1);
-       insert into applicants_skills (applicant_id, skill_id) values (1,2);
-       insert into applicants_skills (applicant_id, skill_id) values (1,3);
-       insert into applicants_skills (applicant_id, skill_id) values (1,4);
-       insert into applicants_skills (applicant_id, skill_id) values (1,5);
-       insert into applicants_skills (applicant_id, skill_id) values (1,6);
-       insert into applicants_skills (applicant_id, skill_id) values (1,7);
-       insert into applicants_skills (applicant_id, skill_id) values (2,1);
-       insert into applicants_skills (applicant_id, skill_id) values (2,2);
-       insert into applicants_skills (applicant_id, skill_id) values (2,3);
-       insert into applicants_skills (applicant_id, skill_id) values (2,4);
-       insert into applicants_skills (applicant_id, skill_id) values (2,6);
-       insert into applicants_skills (applicant_id, skill_id) values (4,1);
-       insert into applicants_skills (applicant_id, skill_id) values (4,3);
-       insert into applicants_skills (applicant_id, skill_id) values (4,4);
-       insert into applicants_skills (applicant_id, skill_id) values (5,3);
-       insert into applicants_skills (applicant_id, skill_id) values (5,4);
-       insert into applicants_skills (applicant_id, skill_id) values (3,4);"   
+sql = "INSERT INTO applicants_skills 
+          SELECT 1,2
+          UNION ALL SELECT 1,2
+          UNION ALL SELECT 1,3
+          UNION ALL SELECT 1,4
+          UNION ALL SELECT 1,5
+          UNION ALL SELECT 1,6
+          UNION ALL SELECT 1,7
+          UNION ALL SELECT 2,1
+          UNION ALL SELECT 2,2
+          UNION ALL SELECT 2,3
+          UNION ALL SELECT 2,4
+          UNION ALL SELECT 2,6
+          UNION ALL SELECT 4,1
+          UNION ALL SELECT 4,3
+          UNION ALL SELECT 4,4
+          UNION ALL SELECT 5,4
+          UNION ALL SELECT 5,4;"   
 
 ActiveRecord::Base.connection.execute(sql)
-
-
 

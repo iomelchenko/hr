@@ -8,8 +8,10 @@ class ApplicantsController < ApplicationController
 
   def show
 
-    @matched_vacancies      = Vacancy.filter_valid_vacancies.vacancy_links.joins("LEFT OUTER JOIN applicants_skills ask ON ask.skill_id = sv.skill_id AND ask.applicant_id = #{@applicant.id}").group_by_vacancies.having_by_skills.order_by_salary
-    @part_matched_vacancies = Vacancy.filter_valid_vacancies.vacancy_links.joins("LEFT OUTER JOIN applicants_skills ask ON ask.skill_id = sv.skill_id AND ask.applicant_id = #{@applicant.id}").group_by_vacancies.having_by_skills_partially.order_by_salary
+    @matched_vacancies      = Vacancy.filter_valid_vacancies.vacancy_links.joins("LEFT OUTER JOIN applicants_skills ask 
+                                                                                    ON ask.skill_id = sv.skill_id AND ask.applicant_id = #{@applicant.id}").group_by_vacancies.having_by_skills.order_by_salary
+    @part_matched_vacancies = Vacancy.filter_valid_vacancies.vacancy_links.joins("LEFT OUTER JOIN applicants_skills ask 
+                                                                                    ON ask.skill_id = sv.skill_id AND ask.applicant_id = #{@applicant.id}").group_by_vacancies.having_by_skills_partially.order_by_salary
  
   end
 
