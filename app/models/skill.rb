@@ -8,17 +8,14 @@ class Skill < ActiveRecord::Base
 
 	private
 
-		def self.create_new_or_add_existed_skill(added_skills, model_object)
+		def self.create_new_or_add_existed_skill(added_skill, model_object)
 
-		    added_skills.each do |skill|
-
-		      existing_skill = Skill.find_by_name_downcase(skill)
+		      existing_skill = Skill.find_by_name_downcase(added_skill)
 		      if existing_skill != nil
 		         Skill.add_skill_association(existing_skill, model_object) if Skill.association_not_exist?(existing_skill, model_object)
 		      else
-		         Skill.create_new_skill(skill, model_object)
+		         Skill.create_new_skill(added_skill, model_object)
 		      end
-		    end	
 		end
 
 	    def self.find_by_name_downcase(name)

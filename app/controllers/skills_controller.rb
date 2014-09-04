@@ -21,9 +21,9 @@ class SkillsController < ApplicationController
     @vacancy = Vacancy.find(params["skill"]["vacancy_id"]) if @model_name == "vacancy"
     @applicant = Applicant.find(params["skill"]["applicant_id"]) if @model_name == "applicant"
     @model_object = @vacancy || @applicant
-    added_skills = params["skill"]["name"].split(',')
+    added_skill = params["skill"]["name"]
 
-    Skill.create_new_or_add_existed_skill(added_skills, @model_object)
+    Skill.create_new_or_add_existed_skill(added_skill, @model_object)
    
     respond_to do |format|
         format.js 
