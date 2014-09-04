@@ -17,13 +17,17 @@
 		<h3> Skills for " <%=t '.title', :default => @applicant.name %> " applicant</h3>
 
 		  
-		<%= render partial: 'skills/skills_new' %>
-
 		<table class="table table-condensed" id="skills_table">
 
 		<%= render partial: 'skills/skill', collection: @applicant.skills, params: params %>
 
 		</table>
+
+		<h3> Add new skills</h3>
+		<h5> type new or select existing</h5>
+		
+		<%= render partial: 'skills/skills_new' %>		
+
 	</div>			
 </div>	
 

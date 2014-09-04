@@ -6,23 +6,19 @@
   <%= javascript_include_tag 'jquery', 'application', media: 'all','data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-
   <%= yield(:head) %>
 
 </head>
-  <body>
-    <div class="container">
-        <ul class="nav nav-tabs">
-        	<li><%= link_to 'Vacancies', vacancies_path %></li>
-        	<li><%= link_to 'Applicants', applicants_path %></li>
-          <li><%= link_to 'Skills', skills_path %></li>
-        </ul>
-
-
-        <div class="row">
-          <div class="col-md-12"><%= yield %></div>
-        </div>
+<body>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li><%= link_to 'Vacancies', vacancies_path %></li>
+      <li><%= link_to 'Applicants', applicants_path %></li>
+      <li><%= link_to 'Skills', skills_path %></li>
+    </ul>
+    <div class="row">
+    <div class="col-md-12"><%= yield %></div>
     </div>
-
-  </body>
+  </div>
+</body>
 </html>

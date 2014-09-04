@@ -1,12 +1,53 @@
 <%# encoding: utf-8 %>
 
 $(document).ready(function() {
-		var skills = [];
+
+
+	(function() {
+	 var choices = [];
 		<% for skill in Skill.all %>
-			skills.push('<%= skill.name %>');
-		<% end %>	
-		$("#e2").select2({ tags:skills,
-						   tokenSeparators: [","],
-						   placeholder: "Select or type new skill ..."
-						});
+		    var obj = {};
+		    obj.id = '<%= skill.id %>';
+		    obj.text = '<%= skill.name %>';
+			choices.push(obj);
+		<% end %>		
+
+	$("#tags").select2({
+		query:function(query) {
+	        var data={}, i;
+	        data.results=[];
+
+	        
+	        if (query.term!=="") {          
+	            data.results.push({id:query.term,text:query.term});
+	        }
+	        
+	        
+	        for (i=0;i<choices.length;i++) {
+	        	data.results.push({id:choices[i].text,text:choices[i].text});
+	        }
+	        
+	        query.callback (data);
+	    }
+	}).on("open", function() {
+	console.log("opened", this);
+	    
+	$(this).select2("val", "");        
+	    
+	}).on("change", function() {
+	    
+	    
+	    var result=$(this).select2('val'), i, found=false; 
+	    for (i=0;i<choices.length;i++) {
+
+	        if (choices[i].id.localeCompare(result)===0) {
+	            found=true;
+	            break;
+	        }
+	    }
+	    if (!found) { choices.push({id:result, text:result}); }
+	});
+	})();
+         
+
 });
